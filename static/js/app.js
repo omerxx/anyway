@@ -610,6 +610,11 @@ $(function () {
                         icon : "plus-sign",
                         text : NEW_FEATURES,
                         callback : _.bind(this.featuresSubscriptionDialog, this)
+                    },
+                    {
+                        icon : "plus-sign",
+                        text : "הדיון החדש",
+                        callback : _.bind(this.newDiscussionDialog, this)
                     }
                 ]}).render(e);
         },
@@ -657,6 +662,38 @@ $(function () {
                 event: event,
                 markers: this.markers
             }).render();
+        },
+        newDiscussionDialog : function(type, event) {
+            if (this.createDialog) this.createDialog.close();
+            var that = this;
+            this.createDialog = new DiscussDialog({
+                // identifier: that.newDiscussionIdentifier,
+                model: new Discussion({
+                    identifier: that.newDiscussionIdentifier,
+                    latitude: that.clickLocation.lat(),
+                    longitude: that.clickLocation.lng(),
+                    type: MARKER_TYPE_DISCUSSION            // TODO: change type to the new discusssion type
+                })
+
+            }).render();
+
+            /*
+            var identifier = this.newDiscussionIdentifier;
+            if (typeof identifier == 'undefined') return true;
+            var model = new Discussion({
+                identifier: identifier,
+                latitude: this.clickLocation.lat(),
+                longitude: this.clickLocation.lng(),
+                type: MARKER_TYPE_DISCUSSION
+            });
+            var view = new MarkerView({model: model, map: this.map}).render();
+            $.post("new-discussion", JSON.stringify({
+                    "latitude"  : model.get("latitude"),
+                    "longitude" : model.get("longitude"),
+                    "identifier": identifier,
+                    "title"     : identifier
+                }));
+            return true; */
         },
         handleSearchBox: function () {
             var places = this.searchBox.getPlaces();

@@ -162,6 +162,33 @@ def marker(marker_id):
     return make_response(json.dumps(list_to_return, ensure_ascii=False))
 
 
+@app.route("/new-discussion", methods=["GET", "POST"])
+def newdiscussion():
+    if request.method == "GET":
+        try:
+            dmarker = db_session.query(DiscussionMarker)\
+                .filter(DiscussionMarker.identifier ==
+                        request.values['identifier']).first()
+            context = {'identifier': dmarker.identifier, 'title': dmarker.title}
+            return render_template('new-disqus.html', **context)
+        except AttributeError:
+            return index(message=u"הדיון לא נמצא: " + request.values['identifier'])
+        except KeyError:
+            return index(message=u"דיון לא חוקי")
+    else:
+        dmarker = parse_data(DiscussionMarker, get_json_object(request))
+        if dmarker is None:
+            log_bad_request(request)
+            return make_response("")
+        return make_response(post_handler(dmarker))
+
+    """jsonData = request.get_json(force=True)
+    emailaddress = str(jsonData['address'])
+    fname = (jsonData['fname']).encode("utf8")
+    lname = (jsonData['lname']).encode("utf8")
+    dcontent = (jsonData['dcontent']).encode("utf8")"""
+
+
 @app.route("/discussion", methods=["GET", "POST"])
 @user_optional
 def discussion():

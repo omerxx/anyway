@@ -328,6 +328,50 @@
         </div>
 
 
+        <div id="discuss-dialog-template" style="display: none">
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>דיון</h3>
+                    <h5> פתח דיון בנקודה זו במפה. יצירת דיון תוסיף נקודת ציון במפה בה משתמשים נוספים יוכלו לקרוא ולהגיב לדיון זה </h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" align="right">
+                        <div class="control-group" align="right">
+                            <p>תוכן הדיון:
+                            <div style="width:100%">
+                                <textarea id="dcontent" name="dcontent" placeholder="דוגמא: ״זוית הראיה בנקודה זו בעייתית מאוד. הצומת מסוכנת ביותר ויש לפעול לשילוט מתאים או הכוונה לנהגים.״" rows="4" cols="100"></textarea></p>
+                            </div>
+                            <p></p>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>שם פרטי:
+                                        <input type="text" id="dfName" name="dfName" placeholder="דוד"></p>
+                                    </td>
+                                    <td>
+                                        <p>שם משפחה:
+                                        <input type="text" id="dlName" name="dlName" placeholder="המלך"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>כתובת דוא״ל:
+                                        <input type="email" id="demailAddress" name="demailAddress" placeholder="king@david.com"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn close-button">סגור</a>
+                    <a class="btn btn-primary save-button">צור דיון</a>
+                </div>
+            </div>
+        </div>
+
+
         <div id="reset-map-control" style="padding: 5px; display: none">
             <div title="חזור למיקום שלי" style="background-color: white; border: 2px solid black; cursor: pointer; boxShadow: 1px 1px 5px black {{ '; display: none' if map_only }}">
                 <img src="/static/img/my_location.png" />
@@ -405,7 +449,8 @@
             "js/localization.js",
             "js/years.js",
             "js/inv_dict.js",
-            "js/veh_dict.js"
+            "js/veh_dict.js",
+            "js/discussdialog.js"
              %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}

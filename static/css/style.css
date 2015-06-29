@@ -139,3 +139,7 @@ textarea.form-control-wide {
 .sb-button{
     min-height: initial !important;
 }
+
+textarea {
+    width:90%
+}
