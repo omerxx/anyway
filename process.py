@@ -336,6 +336,13 @@ def get_files(directory):
             yield name, csv
 
 
+def batch_to_datastore(datalist, batch_size, table):
+    batch_list = (datalist[pos:pos + 5000] for pos in xrange(0, len(datalist), 5000))
+    for chunk in batch_list:
+        db.session.execute(table.__table__.insert(), chunk)
+        db.session.commit()
+
+
 def import_to_datastore(directory, provider_code, batch_size):
     """
     goes through all the files in a given directory, parses and commits them
@@ -347,14 +354,20 @@ def import_to_datastore(directory, provider_code, batch_size):
         print("importing data from directory: {}".format(directory))
         now = datetime.now()
         accidents = list(import_accidents(provider_code=provider_code, **files_from_lms))
-        db.session.execute(Marker.__table__.insert(), accidents)
-        db.session.commit()
+        #db.session.execute(Marker.__table__.insert(), accidents)
+        #db.session.commit()
+        batch_to_datastore(accidents, batch_size, Marker)
+
         involved = list(import_involved(provider_code=provider_code, **files_from_lms))
-        db.session.execute(Involved.__table__.insert(), involved)
-        db.session.commit()
+        #db.session.execute(Involved.__table__.insert(), involved)
+        #db.session.commit()
+        batch_to_datastore(involved, batch_size, Involved)
+
         vehicles = list(import_vehicles(provider_code=provider_code, **files_from_lms))
-        db.session.execute(Vehicle.__table__.insert(), vehicles)
-        db.session.commit()
+        #db.session.execute(Vehicle.__table__.insert(), vehicles)
+        #db.session.commit()
+        batch_to_datastore(vehicles, batch_size, Vehicle)
+
         took = int((datetime.now() - now).total_seconds())
         print("imported {0} items from directory: {1} in {2} seconds".format(len(accidents)+len(involved)+len(vehicles),
                                                                              directory, took))
