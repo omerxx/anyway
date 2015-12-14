@@ -2,10 +2,12 @@ Anyway’s docker environment
 ===========================
 
 Docker is an open source project to pack, ship and run any application as a lightweight container.
+
 The idea is to deploy a container (light weight environment) that has all our app dependencies installed and ready to go.
 As a developer you can do one of both:
-1. Use the container do write your code (using vim/nano or any other GNU text editing tool - not recommended)
-2. Use a git repo cloned to your local machine and use the container as a remote server running the app
+
+* Use the container do write your code (using vim/nano or any other GNU text editing tool - not recommended)
+* Use a git repo cloned to your local machine and use the container as a remote server running the app
 
 The container loads itself with the command given in the instructions, it has the DB on it, deployed and ready to work (at /anyway/local.db)
 With every local code change, the container would restart itself and the changes would be immediately available in your web browser.
@@ -19,11 +21,8 @@ Instructions
 
 1. Install docker prerequisites: https://www.docker.com/docker-toolbox
 2. Either run "Docker terminal” or use your own and type: `eval “$(docker-machine env default)”`
-
 3. Go to the anyway directory and run:
-
-
-    docker run --restart="always" -p 80:5000 -v $PWD:/opt/anyway -w /opt/anyway omerxx/anyway-docker /bin/bash -c 'export DATABASE_URL=sqlite:////anyway/local.db && python main.py —open’
+    `docker run --restart="always" -p 80:5000 -v $PWD:/opt/anyway -w /opt/anyway omerxx/anyway-docker /bin/bash -c 'export DATABASE_URL=sqlite:////anyway/local.db && python main.py —open’`
 4. Access the app at the virtual machine’s IP; to get it: `docker-machine ip default`
 
 
