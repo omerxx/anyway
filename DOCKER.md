@@ -11,7 +11,7 @@ As a developer you can do one of both:
 
 The container loads itself with the command given in the instructions, it has the DB on it, deployed and ready to work (at /anyway/local.db)
 With every local code change, the container would restart itself and the changes would be immediately available in your web browser.
-The current image is based on an Ubuntu linux with java.
+The current image is based on an Ubuntu linux with java. 
 Read more at the docker [Github project] (https://github.com/docker/docker)
 
 
