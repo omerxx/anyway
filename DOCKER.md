@@ -12,7 +12,8 @@ As a developer you can do one of both:
 The container loads itself with the command given in the instructions, it has the DB on it, deployed and ready to work (at /anyway/local.db)
 With every local code change, the container would restart itself and the changes would be immediately available in your web browser.
 The current image is based on an Ubuntu linux with java. 
-Read more at the docker [Github project] (https://github.com/docker/docker)
+
+Read more on the docker [Github project] (https://github.com/docker/docker)
 
 
 Instructions
@@ -22,6 +23,7 @@ Instructions
 1. Install docker prerequisites: https://www.docker.com/docker-toolbox
 2. Either run "Docker terminal” or use your own and type: `eval “$(docker-machine env default)”`
 3. Go to the anyway directory and run:
+
     `docker run --restart="always" -p 80:5000 -v $PWD:/opt/anyway -w /opt/anyway omerxx/anyway-docker /bin/bash -c 'export DATABASE_URL=sqlite:////anyway/local.db && python main.py —open’`
 4. Access the app at the virtual machine’s IP; to get it: `docker-machine ip default`
 
