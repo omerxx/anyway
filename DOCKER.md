@@ -3,6 +3,8 @@ Anyway’s docker environment
 
 Docker is an open source project to pack, ship and run any application as a lightweight container.
 
+ ![docker png](https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwi-7datrNzJAhUBKBoKHaVJBLAQjRwIBw&url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-docker&psig=AFQjCNHEkBUr-kdNIUCvKwGDHLqcIr0pBw&ust=1450216700759706)
+
 The idea is to deploy a container (light weight environment) that has all our app dependencies installed and ready to go.
 As a developer you can do one of both:
 
