@@ -19,8 +19,11 @@ Instructions
 
 1. Install docker prerequisites: https://www.docker.com/docker-toolbox
 2. Either run "Docker terminal” or use your own and type: `eval “$(docker-machine env default)”`
+
 3. Go to the anyway directory and run:
-    `docker run --restart="always" -p 80:5000 -v $PWD:/opt/anyway -w /opt/anyway omerxx/anyway-docker /bin/bash -c 'export DATABASE_URL=sqlite:////anyway/local.db && python main.py —open’`
+
+
+    docker run --restart="always" -p 80:5000 -v $PWD:/opt/anyway -w /opt/anyway omerxx/anyway-docker /bin/bash -c 'export DATABASE_URL=sqlite:////anyway/local.db && python main.py —open’
 4. Access the app at the virtual machine’s IP; to get it: `docker-machine ip default`
 
 
@@ -31,12 +34,27 @@ simply rebuild the image; get it from [here] (https://github.com/omerxx/anyway-d
 then go to its local path and `docker build -t omerxx/anyway .`
 
 ## Docker commands
-List your local docker images: `docker images`
-List your running containers `docker ps`
-List all containers ever: `docker ps -a`
 
-Stop a running container: `docker top <container-id>` (id is listed in `docker ps`)
-Deleting an image: `docker rmi <image-id>` (from `docker images`)
+List your local docker images: 
+
+    docker images
+    
+List your running containers: 
+    
+    docker ps
+    
+List all containers ever: 
+
+    docker ps -a
+
+Stop a running container (id is listed in `docker ps`): 
+
+    docker top <container-id> 
+
+Deleting an image(from `docker images`): 
+
+    docker rmi <image-id>
+ 
 
 
 Questions and ideas
